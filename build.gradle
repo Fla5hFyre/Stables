@@ -8,6 +8,14 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+
+repositories {
+	flatDir {
+		dirs 'deps'
+	}
+	
+}
+	
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -26,6 +34,9 @@ minecraft {
     
     runs {
         client {
+			
+			property 'mixin.env.disableRefMap', 'true'
+			
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
@@ -42,6 +53,9 @@ minecraft {
         }
 
         server {
+		
+			property 'mixin.env.disableRefMap', 'true'
+
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
@@ -79,6 +93,8 @@ minecraft {
 
 dependencies {	
 	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+	
+	implementation fg.deobf("ignored:blame:1.7.3")
 
 }
 

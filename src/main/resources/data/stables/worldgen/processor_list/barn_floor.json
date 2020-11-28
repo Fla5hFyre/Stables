@@ -1,0 +1,54 @@
+{
+  "processors": [
+  {
+      "rules": [
+        {
+          "output_state": {
+			"Properties": {
+				"axis": "y"
+			},
+            "Name": "minecraft:hay_block"
+          },
+          "input_predicate": {
+            "block": "minecraft:coarse_dirt",
+            "probability": 0.4,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+		{
+          "output_state": {
+            "Name": "minecraft:coarse_dirt"
+          },
+          "input_predicate": {
+            "block": "minecraft:gravel",
+            "probability": 0.3,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+		    "Properties": {
+				"axis": "y"
+			},
+            "Name": "minecraft:hay_block"
+          },
+          "input_predicate": {
+            "block": "minecraft:gravel",
+            "probability": 0.2,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        }
+      ],
+      "processor_type": "minecraft:rule"
+    }
+  ]
+}
