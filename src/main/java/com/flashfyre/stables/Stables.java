@@ -60,7 +60,7 @@ public class Stables
     	RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
     	Set<Type> types = BiomeDictionary.getTypes(key);
     	if(types.contains(BiomeDictionary.Type.PLAINS) && !types.contains(BiomeDictionary.Type.HOT) && !types.contains(BiomeDictionary.Type.SNOWY)) {
-    		event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.CONFIGURED_BARN);
+    		event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.CONFIGURED_LARGE_BARN);
     	}
     }
     
@@ -75,7 +75,7 @@ public class Stables
             	}
 
             	Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-            	tempMap.put(StablesStructures.BARN.get(), DimensionStructuresSettings.field_236191_b_.get(StablesStructures.BARN.get()));
+            	tempMap.put(StablesStructures.LARGE_BARN.get(), DimensionStructuresSettings.field_236191_b_.get(StablesStructures.LARGE_BARN.get()));
             	serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
             }           
         }

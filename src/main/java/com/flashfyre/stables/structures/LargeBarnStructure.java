@@ -21,15 +21,15 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class BarnStructure extends Structure<NoFeatureConfig> {
+public class LargeBarnStructure extends Structure<NoFeatureConfig> {
 
-	public BarnStructure(Codec<NoFeatureConfig> codec) {
+	public LargeBarnStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
 	}
 	
 	@Override
     public  IStartFactory<NoFeatureConfig> getStartFactory() {
-        return BarnStructure.Start::new;
+        return LargeBarnStructure.Start::new;
     }
 	
 	@Override
@@ -54,7 +54,7 @@ public class BarnStructure extends Structure<NoFeatureConfig> {
             JigsawManager.func_242837_a(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "barn/start_pool")),
+                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "large_barn/start_pool")),
                             50),
                     AbstractVillagePiece::new,
                     chunkGenerator,
@@ -73,7 +73,7 @@ public class BarnStructure extends Structure<NoFeatureConfig> {
             this.recalculateStructureSize();
 
             // I use to debug and quickly find out if the structure is spawning or not and where it is.
-            Stables.LOGGER.log(Level.DEBUG, "Barn generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+            Stables.LOGGER.log(Level.DEBUG, "Large barn generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
         }
 
     }

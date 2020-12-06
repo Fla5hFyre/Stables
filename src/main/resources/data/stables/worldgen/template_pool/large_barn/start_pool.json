@@ -1,0 +1,24 @@
+{
+  "name": "stables:large_barn/start_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stables:large_barn/large_barn_brick",
+        "processors": "stables:barn_floor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 1,
+      "element": {
+        "location": "stables:large_barn/large_barn_stone_brick",
+        "processors": "stables:barn_floor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

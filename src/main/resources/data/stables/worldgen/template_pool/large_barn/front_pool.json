@@ -1,11 +1,11 @@
 {
-  "name": "stables:barn/farm_pool",
+  "name": "stables:large_barn/front_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "stables:wheat_farm",
+        "location": "stables:large_barn/large_barn_front_1",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -14,7 +14,7 @@
 	{
 	  "weight": 1,
       "element": {
-        "location": "stables:carrot_farm",
+        "location": "stables:large_barn/large_barn_front_2",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

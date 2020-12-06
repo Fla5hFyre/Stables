@@ -9,12 +9,12 @@ import net.minecraft.world.gen.feature.StructureFeature;
 
 public class StablesConfiguredStructures {
 	
-	public static StructureFeature<?, ?> CONFIGURED_BARN = StablesStructures.BARN.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
+	public static StructureFeature<?, ?> CONFIGURED_LARGE_BARN = StablesStructures.LARGE_BARN.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
 
 	public static void registerConfiguredStructures() {
         Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
-        Registry.register(registry, new ResourceLocation(Stables.MOD_ID, "configured_run_down_house"), CONFIGURED_BARN);
+        Registry.register(registry, new ResourceLocation(Stables.MOD_ID, "configured_large_barn"), CONFIGURED_LARGE_BARN);
 
-        FlatGenerationSettings.STRUCTURES.put(StablesStructures.BARN.get(), CONFIGURED_BARN);
+        FlatGenerationSettings.STRUCTURES.put(StablesStructures.LARGE_BARN.get(), CONFIGURED_LARGE_BARN);
     }
 }

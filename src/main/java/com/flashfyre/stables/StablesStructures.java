@@ -2,7 +2,7 @@ package com.flashfyre.stables;
 
 import java.util.function.Supplier;
 
-import com.flashfyre.stables.structures.BarnStructure;
+import com.flashfyre.stables.structures.LargeBarnStructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -18,7 +18,7 @@ public class StablesStructures {
 	
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Stables.MOD_ID);
 	
-	public static final RegistryObject<Structure<NoFeatureConfig>> BARN = setupStructure("barn", () -> (new BarnStructure(NoFeatureConfig.field_236558_a_)));
+	public static final RegistryObject<Structure<NoFeatureConfig>> LARGE_BARN = setupStructure("large_barn", () -> (new LargeBarnStructure(NoFeatureConfig.field_236558_a_)));
 
 	private static <T extends Structure<?>> RegistryObject<T> setupStructure(String name, Supplier<T> structure) {
         return DEFERRED_REGISTRY_STRUCTURE.register(name, structure);
@@ -26,7 +26,7 @@ public class StablesStructures {
 	
 	public static void setupStructures() {
         setupStructure(
-                BARN.get(), /* The instance of the structure */
+                LARGE_BARN.get(), /* The instance of the structure */
                 new StructureSeparationSettings(20 /* maximum distance apart in chunks between spawn attempts */,
                         10 /* minimum distance apart in chunks between spawn attempts */,
                         671023157 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
