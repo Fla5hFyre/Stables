@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.gen.feature.template.Template.BlockInfo;
 
 public class ReplaceBlocksProcessor extends StructureProcessor {
 	
@@ -36,33 +37,39 @@ public class ReplaceBlocksProcessor extends StructureProcessor {
 		this.replacements = replacements;
 	}
 	
-	public Template.BlockInfo process(IWorldReader worldView, BlockPos pos, BlockPos blockPos, Template.BlockInfo structureBlockInfoLocal, Template.BlockInfo structureBlockInfoWorld, PlacementSettings structurePlacementData) {
-			BlockState state = structureBlockInfoWorld.state;
-			BlockState newState = null;
-			Random r = structurePlacementData.getRandom(pos);
-			if(replacements.containsKey(state.getBlock())) {
-				if(r.nextFloat() < this.chance) {
-					if(state.isIn(BlockTags.STAIRS)) {
-						newState = correctStairRotations(replacements.get(state.getBlock()).getDefaultState());
-					}
-					else {
-						newState = replacements.get(state.getBlock()).getDefaultState();
-					}					
+	@Override
+	public BlockInfo process(IWorldReader worldView, BlockPos pos, BlockPos blockPos,
+			BlockInfo structureBlockInfoLocal, BlockInfo structureBlockInfoWorld, PlacementSettings structurePlacementData, Template template) {
+		BlockState state = structureBlockInfoWorld.state;
+		BlockState newState = null;
+		Random r = structurePlacementData.getRandom(structureBlockInfoWorld.pos);
+		if(replacements.containsKey(state.getBlock())) {
+			if(r.nextFloat() < this.chance) {	
+ 				if(state.isIn(BlockTags.STAIRS)) {
+					newState = getStateStairs(state);
+				}
+				else {
+					newState = getReplacementState(state);
 				}
 			}
-        return newState != null ? new Template.BlockInfo(pos, newState, structureBlockInfoWorld.nbt) : structureBlockInfoWorld;
-    }
+		}
+    return newState != null ? new Template.BlockInfo(structureBlockInfoWorld.pos, newState, structureBlockInfoWorld.nbt) : structureBlockInfoWorld;
+	}
 
 	@Override
 	protected IStructureProcessorType<?> getType() {
 		return StablesProcessors.REPLACE_BLOCKS_PROCESSOR;
 	}
 	
-	public BlockState correctStairRotations(BlockState state) {
+	public BlockState getStateStairs(BlockState state) {
 		Direction direction = state.get(StairsBlock.FACING);
 	    Half half = state.get(StairsBlock.HALF);
-	    BlockState newState = state.with(StairsBlock.FACING, direction).with(StairsBlock.HALF, half);
+	    BlockState newState = getReplacementState(state).with(StairsBlock.FACING, direction).with(StairsBlock.HALF, half);
 	    return newState;
+	}
+	
+	public BlockState getReplacementState(BlockState state) {
+		return replacements.get(state.getBlock()).getDefaultState();
 	}
 
 }
