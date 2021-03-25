@@ -1,0 +1,15 @@
+{
+  "processors": [
+  {
+      "processor_type": "stables:replace_blocks_processor",
+	  "chance": 0.3,
+	  "replacements":
+		{
+			"minecraft:cobblestone": "minecraft:mossy_cobblestone",
+			"minecraft:cobblestone_stairs": "minecraft:mossy_cobblestone_stairs",
+			"minecraft:stone_bricks": "minecraft:mossy_stone_bricks",
+			"minecraft:stone_brick_stairs": "minecraft:mossy_stone_brick_stairs"
+		}
+    }
+  ]
+}

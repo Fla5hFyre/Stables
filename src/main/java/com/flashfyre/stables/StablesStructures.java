@@ -16,20 +16,20 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class StablesStructures {
 	
-	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Stables.MOD_ID);
+	public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Stables.MOD_ID);
 	
 	public static final RegistryObject<Structure<NoFeatureConfig>> LARGE_BARN = setupStructure("large_barn", () -> (new LargeBarnStructure(NoFeatureConfig.field_236558_a_)));
 
 	private static <T extends Structure<?>> RegistryObject<T> setupStructure(String name, Supplier<T> structure) {
-        return DEFERRED_REGISTRY_STRUCTURE.register(name, structure);
+        return STRUCTURES.register(name, structure);
     }
 	
 	public static void setupStructures() {
         setupStructure(
                 LARGE_BARN.get(), /* The instance of the structure */
-                new StructureSeparationSettings(20 /* maximum distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts */,
-                        671023157 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                new StructureSeparationSettings(15 /* maximum distance apart in chunks between spawn attempts */,
+                        5 /* minimum distance apart in chunks between spawn attempts */,
+                        694206969 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         // Add more structures here and so on

@@ -1,0 +1,7 @@
+{
+	"type": "stables:spawn_entity",
+	"config":
+	{
+		"entity": "stables:stable_master"
+	}	
+}

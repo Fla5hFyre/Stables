@@ -1,7 +1,5 @@
 package com.flashfyre.stables.structures;
 
-import org.apache.logging.log4j.Level;
-
 import com.flashfyre.stables.Stables;
 import com.mojang.serialization.Codec;
 
@@ -72,8 +70,7 @@ public class LargeBarnStructure extends Structure<NoFeatureConfig> {
             // Sets the bounds of the structure once you are finished.
             this.recalculateStructureSize();
 
-            // I use to debug and quickly find out if the structure is spawning or not and where it is.
-            Stables.LOGGER.log(Level.DEBUG, "Large barn generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+            //Stables.LOGGER.log(Level.DEBUG, "Large barn generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
         }
 
     }

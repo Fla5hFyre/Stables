@@ -1,0 +1,14 @@
+{
+  "name": "stables:trader_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+	  "weight": 1,
+      "element": {
+        "feature": "stables:stable_master",
+        "projection": "rigid",
+        "element_type": "minecraft:feature_pool_element"
+      }
+	}
+  ]
+}

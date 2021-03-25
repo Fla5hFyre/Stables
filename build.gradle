@@ -94,7 +94,7 @@ minecraft {
 dependencies {	
 	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 	
-	implementation fg.deobf("ignored:blame:1.7.3")
+	//implementation fg.deobf("ignored:blame:1.7.3")
 
 }
 
