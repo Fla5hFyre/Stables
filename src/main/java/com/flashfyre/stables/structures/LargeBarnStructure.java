@@ -48,11 +48,10 @@ public class LargeBarnStructure extends Structure<NoFeatureConfig> {
             int z = (chunkZ << 4) + 7;
             BlockPos blockpos = new BlockPos(x, 0, z);
 
-            // All a structure has to do is call this method to turn it into a jigsaw based structure!
             JigsawManager.func_242837_a(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "large_barn/start_pool")),
+                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "buildings/oak/large_barn/main_pool")),
                             50),
                     AbstractVillagePiece::new,
                     chunkGenerator,

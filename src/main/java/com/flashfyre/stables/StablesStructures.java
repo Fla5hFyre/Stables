@@ -26,10 +26,10 @@ public class StablesStructures {
 	
 	public static void setupStructures() {
         setupStructure(
-                LARGE_BARN.get(), /* The instance of the structure */
-                new StructureSeparationSettings(15 /* maximum distance apart in chunks between spawn attempts */,
-                        5 /* minimum distance apart in chunks between spawn attempts */,
-                        694206969 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                LARGE_BARN.get(),
+                new StructureSeparationSettings(28 /*average distance apart in chunks between spawn attempts */,
+                        8 /* minimum distance apart in chunks between spawn attempts */,
+                        694206969),
                 true);
 
         // Add more structures here and so on

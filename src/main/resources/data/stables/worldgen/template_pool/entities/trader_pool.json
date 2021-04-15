@@ -1,5 +1,5 @@
 {
-  "name": "stables:trader_pool",
+  "name": "stables:entities/trader_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {

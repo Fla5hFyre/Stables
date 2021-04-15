@@ -1,6 +1,16 @@
 {
   "processors": [
   {
+      "processor_type": "stables:replace_specific_block",
+	  "block": "minecraft:bricks",
+	  "replacements": [
+	    "minecraft:bricks",
+		"minecraft:stone_bricks",
+		"minecraft:cobblestone"
+	  ]
+  },
+  {
+      "processor_type": "minecraft:rule",
       "rules": [
         {
           "output_state": {
@@ -47,8 +57,7 @@
             "predicate_type": "minecraft:always_true"
           }
         }
-      ],
-      "processor_type": "minecraft:rule"
+      ]
     }
   ]
 }

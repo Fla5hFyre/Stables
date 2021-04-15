@@ -12,7 +12,7 @@ displayName="Stables" #mandatory
 #credits="Thanks for this example mod goes to Java" #optional
 authors="FlashFyre" #optional
 description='''
-Adds a new stables structure with a trader.
+Adds a new stable structure that can be found in plains-like biomes. Horse-related items can be acquired from a trader there.
 '''
 [[dependencies.stables]] #optional
     modId="forge" #mandatory

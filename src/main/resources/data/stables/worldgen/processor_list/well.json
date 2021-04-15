@@ -1,7 +1,7 @@
 {
   "processors": [
   {
-      "processor_type": "stables:replace_blocks_processor",
+      "processor_type": "stables:replace_blocks_randomly",
 	  "chance": 0.3,
 	  "replacements":
 		{

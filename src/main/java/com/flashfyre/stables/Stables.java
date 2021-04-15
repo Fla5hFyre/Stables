@@ -100,8 +100,16 @@ public class Stables
     public void biomeModification(final BiomeLoadingEvent event) {
     	RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
     	Set<Type> types = BiomeDictionary.getTypes(key);
-    	if(types.contains(BiomeDictionary.Type.PLAINS) && !types.contains(BiomeDictionary.Type.HOT) && !types.contains(BiomeDictionary.Type.SNOWY)) {
-    		event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.CONFIGURED_LARGE_BARN);
+    	if(types.contains(BiomeDictionary.Type.PLAINS)) {
+    		if(!types.contains(BiomeDictionary.Type.HOT) && !types.contains(BiomeDictionary.Type.SNOWY)) {
+    			event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.CONFIGURED_LARGE_BARN);
+    		}
+    		else if(types.contains(BiomeDictionary.Type.HOT)) {
+    			// Generate acacia stables
+    		}
+    		else if(types.contains(BiomeDictionary.Type.SNOWY)) {
+    			// Generate spruce stables
+    		}
     	}
     }
     

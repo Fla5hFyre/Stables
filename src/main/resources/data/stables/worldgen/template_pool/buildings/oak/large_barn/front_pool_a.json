@@ -1,11 +1,11 @@
 {
-  "name": "stables:large_barn/front_pool",
+  "name": "stables:buildings/oak/large_barn/front_pool_a",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "stables:large_barn/large_barn_front_a",
+        "location": "stables:buildings/oak/large_barn/front_a",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -14,7 +14,7 @@
 	{
 	  "weight": 1,
       "element": {
-        "location": "stables:large_barn/large_barn_front_b",
+        "location": "stables:buildings/oak/large_barn/front_b",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
