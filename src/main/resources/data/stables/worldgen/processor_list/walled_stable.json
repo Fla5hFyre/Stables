@@ -1,0 +1,25 @@
+{
+  "processors": [
+	{
+      "processor_type": "minecraft:rule",
+      "rules": [
+		{
+          "output_state": {
+			"Properties": {
+				"snowy": "false"
+			},
+            "Name": "minecraft:grass_block"
+          },
+          "input_predicate": {
+            "block": "minecraft:grass_path",
+            "probability": 0.3,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        }
+      ]
+    }
+  ]
+}

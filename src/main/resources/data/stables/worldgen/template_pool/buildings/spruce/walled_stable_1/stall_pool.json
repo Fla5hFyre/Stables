@@ -1,0 +1,24 @@
+{
+  "name": "stables:buildings/spruce/walled_stable_1/stall_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+	{
+      "weight": 1,
+      "element": {
+        "location": "stables:buildings/spruce/walled_stable_1/stalls_a1",
+        "processors": "stables:walled_stable",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+	{
+      "weight": 1,
+      "element": {
+        "location": "stables:buildings/spruce/walled_stable_1/stalls_a2",
+        "processors": "stables:walled_stable",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

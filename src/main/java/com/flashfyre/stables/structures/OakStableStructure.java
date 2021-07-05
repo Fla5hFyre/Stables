@@ -4,11 +4,14 @@ import com.flashfyre.stables.Stables;
 import com.mojang.serialization.Codec;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -19,21 +22,29 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-public class LargeBarnStructure extends Structure<NoFeatureConfig> {
+public class OakStableStructure extends Structure<NoFeatureConfig> {
 
-	public LargeBarnStructure(Codec<NoFeatureConfig> codec) {
+	public OakStableStructure(Codec<NoFeatureConfig> codec) {
 		super(codec);
 	}
 	
 	@Override
     public  IStartFactory<NoFeatureConfig> getStartFactory() {
-        return LargeBarnStructure.Start::new;
+        return OakStableStructure.Start::new;
     }
 	
 	@Override
     public GenerationStage.Decoration getDecorationStage() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
+	
+	@Override
+	protected boolean func_230363_a_(ChunkGenerator p_230363_1_, BiomeProvider p_230363_2_, long p_230363_3_,
+			SharedSeedRandom p_230363_5_, int p_230363_6_, int p_230363_7_, Biome p_230363_8_, ChunkPos p_230363_9_,
+			NoFeatureConfig p_230363_10_) {
+		return super.func_230363_a_(p_230363_1_, p_230363_2_, p_230363_3_, p_230363_5_, p_230363_6_, p_230363_7_, p_230363_8_,
+				p_230363_9_, p_230363_10_);
+	}
 	
 	public static class Start extends StructureStart<NoFeatureConfig>  {
         public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
@@ -51,7 +62,7 @@ public class LargeBarnStructure extends Structure<NoFeatureConfig> {
             JigsawManager.func_242837_a(
                     dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "buildings/oak/large_barn/main_pool")),
+                            .getOrDefault(new ResourceLocation(Stables.MOD_ID, "buildings/oak/root_pool")),
                             50),
                     AbstractVillagePiece::new,
                     chunkGenerator,
@@ -65,13 +76,10 @@ public class LargeBarnStructure extends Structure<NoFeatureConfig> {
             //this.components.forEach(piece -> piece.offset(0, 0, 0));
             //this.components.forEach(piece -> piece.getBoundingBox().minY += 1);
 
-
             // Sets the bounds of the structure once you are finished.
             this.recalculateStructureSize();
 
-            //Stables.LOGGER.log(Level.DEBUG, "Large barn generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+            //Stables.LOGGER.log(Level.DEBUG, "Oak stable generated at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
         }
-
     }
-
 }

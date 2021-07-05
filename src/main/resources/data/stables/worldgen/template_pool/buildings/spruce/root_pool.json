@@ -1,0 +1,15 @@
+{
+  "name": "stables:buildings/spruce/root_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+	{
+      "weight": 1,
+      "element": {
+        "location": "stables:buildings/spruce/walled_stable_1/house_a",
+        "processors": "stables:walled_stable",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

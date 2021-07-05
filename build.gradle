@@ -13,6 +13,9 @@ repositories {
 	flatDir {
 		dirs 'deps'
 	}
+	maven {
+		url "https://nexus.resourcefulbees.com/repository/maven-public/"
+	}
 	
 }
 	
@@ -37,6 +40,9 @@ minecraft {
 			
 			property 'mixin.env.disableRefMap', 'true'
 			
+			property 'mixin.env.remapRefMap', 'true'
+			property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+			
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
@@ -55,6 +61,9 @@ minecraft {
         server {
 		
 			property 'mixin.env.disableRefMap', 'true'
+			
+			property 'mixin.env.remapRefMap', 'true'
+			property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             workingDirectory project.file('run')
 
@@ -93,9 +102,7 @@ minecraft {
 
 dependencies {	
 	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-	
-	//implementation fg.deobf("ignored:blame:1.7.3")
-
+	implementation fg.deobf("com.telepathicgrunt:Blame:3.0.2")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

@@ -1,6 +1,7 @@
 package com.flashfyre.stables;
 
 import com.flashfyre.stables.processors.RandomBlockReplacementProcessor;
+import com.flashfyre.stables.processors.ReplaceRandomPatchesProcessor;
 import com.flashfyre.stables.processors.SpecificBlockReplacementProcessor;
 
 import net.minecraft.util.ResourceLocation;
@@ -11,9 +12,11 @@ public class StablesProcessors {
 	
 	public static IStructureProcessorType<SpecificBlockReplacementProcessor> REPLACE_SPECIFIC_BLOCK = () -> SpecificBlockReplacementProcessor.CODEC;
 	public static IStructureProcessorType<RandomBlockReplacementProcessor> REPLACE_BLOCKS_RANDOMLY = () -> RandomBlockReplacementProcessor.CODEC;
+	public static IStructureProcessorType<ReplaceRandomPatchesProcessor> REPLACE_RANDOM_PATCHES = () -> ReplaceRandomPatchesProcessor.CODEC;
 	
 	public static void registerProcessors() {
 		Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(Stables.MOD_ID, "replace_specific_block"), REPLACE_SPECIFIC_BLOCK);
 		Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(Stables.MOD_ID, "replace_blocks_randomly"), REPLACE_BLOCKS_RANDOMLY);
+		Registry.register(Registry.STRUCTURE_PROCESSOR, new ResourceLocation(Stables.MOD_ID, "replace_random_patches"), REPLACE_RANDOM_PATCHES);
 	}
 }

@@ -2,7 +2,8 @@ package com.flashfyre.stables;
 
 import java.util.function.Supplier;
 
-import com.flashfyre.stables.structures.LargeBarnStructure;
+import com.flashfyre.stables.structures.OakStableStructure;
+import com.flashfyre.stables.structures.SpruceStableStructure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
@@ -18,7 +19,8 @@ public class StablesStructures {
 	
 	public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Stables.MOD_ID);
 	
-	public static final RegistryObject<Structure<NoFeatureConfig>> LARGE_BARN = setupStructure("large_barn", () -> (new LargeBarnStructure(NoFeatureConfig.field_236558_a_)));
+	public static final RegistryObject<Structure<NoFeatureConfig>> OAK_STABLE = setupStructure("oak_stable", () -> (new OakStableStructure(NoFeatureConfig.field_236558_a_)));
+	public static final RegistryObject<Structure<NoFeatureConfig>> SPRUCE_STABLE = setupStructure("spruce_stable", () -> (new SpruceStableStructure(NoFeatureConfig.field_236558_a_)));
 
 	private static <T extends Structure<?>> RegistryObject<T> setupStructure(String name, Supplier<T> structure) {
         return STRUCTURES.register(name, structure);
@@ -26,33 +28,27 @@ public class StablesStructures {
 	
 	public static void setupStructures() {
         setupStructure(
-                LARGE_BARN.get(),
-                new StructureSeparationSettings(28 /*average distance apart in chunks between spawn attempts */,
+                OAK_STABLE.get(),
+                new StructureSeparationSettings(24 /*average distance apart in chunks between spawn attempts */,
                         8 /* minimum distance apart in chunks between spawn attempts */,
                         694206969),
                 true);
 
-        // Add more structures here and so on
+        setupStructure(
+        		SPRUCE_STABLE.get(),
+                new StructureSeparationSettings(20 /*average distance apart in chunks between spawn attempts */,
+                        8 /* minimum distance apart in chunks between spawn attempts */,
+                        694206969),
+                true);
     }
 	
 	public static <F extends Structure<?>> void setupStructure(
             F structure,
             StructureSeparationSettings structureSeparationSettings,
-            boolean transformSurroundingLand)
-    {
-        /*
-         * We need to add our structures into the map in Structure alongside vanilla
-         * structures or else it will cause errors. Called by registerStructure.
-         *
-         * If the registration is setup properly for the structure,
-         * getRegistryName() should never return null.
-         */
+            boolean transformSurroundingLand) {
+		
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
-
-        /*
-         * Will add land at the base of the structure like it does for Villages and Outposts.
-         * Doesn't work well on structure that have pieces stacked vertically or change in heights.
-         */
+        
         if(transformSurroundingLand){
             Structure.field_236384_t_ =
                     ImmutableList.<Structure<?>>builder()

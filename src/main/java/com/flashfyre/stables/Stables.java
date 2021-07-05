@@ -4,23 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.stream.IntStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.flashfyre.stables.entity.StableMasterEntity;
+import com.flashfyre.stables.processors.ReplaceRandomPatchesProcessor;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.OctavesNoiseGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
@@ -38,6 +44,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.DeferredRegister;
@@ -100,16 +107,14 @@ public class Stables
     public void biomeModification(final BiomeLoadingEvent event) {
     	RegistryKey<Biome> key = RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName());
     	Set<Type> types = BiomeDictionary.getTypes(key);
-    	if(types.contains(BiomeDictionary.Type.PLAINS)) {
-    		if(!types.contains(BiomeDictionary.Type.HOT) && !types.contains(BiomeDictionary.Type.SNOWY)) {
-    			event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.CONFIGURED_LARGE_BARN);
-    		}
-    		else if(types.contains(BiomeDictionary.Type.HOT)) {
-    			// Generate acacia stables
-    		}
-    		else if(types.contains(BiomeDictionary.Type.SNOWY)) {
-    			// Generate spruce stables
-    		}
+    	if(types.contains(BiomeDictionary.Type.PLAINS) && !types.contains(BiomeDictionary.Type.HOT) && !types.contains(BiomeDictionary.Type.SNOWY)) {
+    		event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.configured_oak_stable);
+    	}
+    	else if (types.contains(BiomeDictionary.Type.PLAINS) && !types.contains(BiomeDictionary.Type.HOT)) {
+    		// Generate acacia stables
+    	}
+    	else if (types.contains(BiomeDictionary.Type.SNOWY) && types.contains(BiomeDictionary.Type.WASTELAND)) {
+    		event.getGeneration().getStructures().add(() -> StablesConfiguredStructures.configured_spruce_stable);
     	}
     }
     
@@ -124,25 +129,23 @@ public class Stables
             	}
 
             	Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-            	tempMap.put(StablesStructures.LARGE_BARN.get(), DimensionStructuresSettings.field_236191_b_.get(StablesStructures.LARGE_BARN.get()));
+            	tempMap.put(StablesStructures.OAK_STABLE.get(), DimensionStructuresSettings.field_236191_b_.get(StablesStructures.OAK_STABLE.get()));
+            	tempMap.put(StablesStructures.SPRUCE_STABLE.get(), DimensionStructuresSettings.field_236191_b_.get(StablesStructures.SPRUCE_STABLE.get()));
             	serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
-            }           
+            }
         }
     }
     
-    public void onRegisterEntityTypes(RegistryEvent.Register<EntityType<?>> event)
-	{
+    public void onRegisterEntityTypes(RegistryEvent.Register<EntityType<?>> event) {
 		BiConsumer<String,EntityType<?>> registrator = getRegistrator(event.getRegistry());
 		registrator.accept("stable_master", this.stable_master);
 	}
     
-    public static <T extends IForgeRegistryEntry<T>> BiConsumer<String,T> getRegistrator(IForgeRegistry<T> registry)
-	{
+    public static <T extends IForgeRegistryEntry<T>> BiConsumer<String,T> getRegistrator(IForgeRegistry<T> registry) {
 		return (name,thing) -> register(name, thing, registry);
 	}
     
-    public static <T extends IForgeRegistryEntry<T>> void register(String name, T thing, IForgeRegistry<T> registry)
-	{
+    public static <T extends IForgeRegistryEntry<T>> void register(String name, T thing, IForgeRegistry<T> registry) {
 		thing.setRegistryName(new ResourceLocation(MOD_ID, name));
 		registry.register(thing);
 	}
